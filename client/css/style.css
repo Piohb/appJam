@@ -1,0 +1,185 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body {
+  background-color: #a6dcef;
+  font-family: "Fjalla One", sans-serif;
+  color: #000000;
+  height: 100vh;
+}
+
+main {
+  height: calc(100% - 60px);
+}
+main section {
+  height: calc(100% - 60px);
+}
+
+img {
+  height: 25px;
+}
+
+.bd {
+  border: white 5px solid;
+}
+.bd.-l {
+  border-left: none;
+}
+.bd.-r {
+  border-right: none;
+}
+.bd.-t {
+  border-top: none;
+}
+.bd.-b {
+  border-bottom: none;
+}
+
+.centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dispersed {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.line {
+  height: 60px;
+}
+
+.text {
+  width: 70%;
+  border: none;
+  border-bottom: 3px solid #000000;
+  background: none;
+  min-width: 250px;
+  padding-left: 5px;
+  outline: none;
+  color: black;
+  /*&:focus {
+    border-bottom: 3px solid aqua;
+    color: aqua;
+
+    &::placeholder {
+      color: aqua;
+    }
+  }*/
+}
+.text::placeholder {
+  color: black;
+}
+
+.no-btn {
+  background-color: transparent;
+  border: 0;
+  padding: 5px;
+}
+
+header {
+  background-color: #ffffff;
+}
+header .logo h1 {
+  margin-bottom: 0;
+}
+header .logo strong {
+  color: #000000;
+}
+header .pseudo .text {
+  width: 100%;
+  text-align: center;
+}
+header .menu {
+  display: flex;
+  justify-content: flex-end;
+}
+header .menu a {
+  margin-left: 15px;
+}
+
+#logotitle {
+  cursor: pointer;
+}
+
+#search-menu .searchbar .text {
+  width: calc(100% - 30px);
+}
+#search-menu .shuffle {
+  height: 100%;
+  padding: 0;
+  position: relative;
+}
+#search-menu .shuffle button {
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: bold;
+  background-color: darkcyan;
+  border: 5px solid #00d7c3;
+  transition: all 0.15s ease-in-out;
+  position: absolute;
+  z-index: 5;
+}
+#search-menu .shuffle button:hover {
+  box-shadow: 0 0 10px 0 crimson inset, 0 0 20px 5px crimson;
+  border: 5px solid crimson;
+}
+#search-menu .category {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+#search-menu .category div {
+  width: 50%;
+}
+#search-menu .category select {
+  width: 100%;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.video {
+  background-color: darksalmon;
+  padding: 0;
+}
+.video #videoPlayer {
+  height: calc(100% - 60px);
+}
+
+.chat {
+  padding: 0;
+  height: 100%;
+}
+.chat .chatTitle {
+  background-color: #a6b1e1;
+  padding: 0 15px;
+}
+.chat .chatTitle h1 {
+  margin-bottom: 0;
+}
+.chat .chatDisplay {
+  background-color: #f2aaaa;
+  height: calc(100% - 120px);
+  padding: 15px;
+  overflow-y: scroll;
+}
+.chat .chatInput {
+  background-color: #e36387;
+  padding: 0 15px;
+}
+.chat .chatInput #chatting {
+  width: 100%;
+}
+.chat .chatInput .text {
+  width: calc(100% - 50px);
+}
+
+/*# sourceMappingURL=style.css.map */

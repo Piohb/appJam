@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>WEBSHUFFLE</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--  CSS  -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="img/random.svg">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="container-fluid">
+
+    <header class="line row dispersed bd">
+        <div class="logo col-2">
+            <h1 id="logotitle">
+                <strong>WEB</strong><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </h1>
+        </div>
+        <div class="pseudo col-2 offset-2 centered">
+            <input type="text" class="text" id="pseudo" autocomplete="off">
+        </div>
+        <div class="menu col-4">
+            <button class="no-btn" data-toggle="modal" data-target="#exampleModal">
+                <img src="img/history.svg" alt="history">
+            </button>
+
+            <button class="no-btn">
+                <img src="img/settings.svg" alt="settings">
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <form class="line row dispersed bd -t -b" id="search-menu">
+
+            <div class="searchbar col-4 dispersed">
+                <img src="img/search.svg" alt="search-icon">
+                <input type="text" class="text" id="query" name="query" placeholder="Search something" autocomplete="off">
+            </div>
+
+            <div class="shuffle col-2 offset-1">
+                <button type="submit" id="shuffle" class="centered">SHUFFLE</button>
+            </div>
+
+            <div class="order col-1 offset-1">
+
+                <select name="order" id="order-select">
+                    <option value="relevance">Relevance</option>
+                    <option value="date">Date</option>
+                    <option value="rating">Rating</option>
+                    <option value="viewcount">ViewCount</option>
+                </select>
+
+            </div>
+
+            <div class="category col-3">
+                <select name="category" id="category-select">
+                    <option value="">No category</option>
+                    <option value="music">Musique</option>
+                    <option value="animal">Animaux</option>
+                </select>
+
+                <button class="no-btn" type="button"><img src="img/plus.svg" alt="plus" style="width: 27.34px"></button>
+            </div>
+
+        </form>
+
+        <section class="row">
+
+            <!--  VIDEO  -->
+            <div class="video col-9 bd -r">
+                <div id="videoPlayer" class="embed-responsive bd -l -r -t">
+                    <div id="player" class="embed-responsive-item"></div>
+                    <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/w9hWrs3zgCo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+                </div>
+
+                <div class="line centered">
+                    <span>username propose to shuffle video</span>
+                </div>
+            </div>
+
+            <!--  CHAT  -->
+            <div class="chat col-3 bd">
+                <div class="chatTitle line dispersed">
+                    <h1>Chat</h1>
+                    <div class="user-count">0</div>
+                </div>
+
+                <div class="chatDisplay bd -l -r" id="box">
+                </div>
+
+                <div class="chatInput line centered">
+                    <form id="chatting" class="dispersed">
+                        <input type="text" class="text" id="msg" placeholder="Say something nice" autocomplete="off"/>
+                        <button class="no-btn"><img src="img/send.svg" alt="send"></button>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--  SCRIPT  -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/cookie_js@1.2.2/cookie.min.js"></script>
+    <!--<script src="js/shuffle.js"></script>-->
+    <script src="js/client.js"></script>
+    <script src="js/embed.js"></script>
+    <script src="js/youtube.js"></script>
+
+    <script>
+
+        function shuffle(array) {
+            let counter = array.length;
+
+            // While there are elements in the array
+            while (counter > 0) {
+                // Pick a random index
+                let index = Math.floor(Math.random() * counter);
+
+                // Decrease counter by 1
+                counter--;
+
+                // And swap the last element with it
+                let temp = array[counter];
+                array[counter] = array[index];
+                array[index] = temp;
+            }
+
+            return array;
+        }
+
+        (function() {
+
+            let data;
+            let url = 'js/data.json';
+            let word = ["S","H","U","F","F","L","E"];
+            let index = 0;
+
+
+            fetch(url)
+                .then(res => res.json())
+                .then(res => data = res)
+                .then(function () {
+
+                    shuffle(word);
+
+                    document.getElementById('logotitle').querySelectorAll("span").forEach(function (span) {
+                        span.innerText = word[index];
+                        span.style.color = data[Math.floor(Math.random() * data.length)].color;
+                        index++;
+                    });
+                });
+
+        })();
+    </script>
+</body>
+</html>
